@@ -8,12 +8,12 @@ public class Hailstone {
         int length = 0;
         while (n != 1){
             if (n % 2 != 0)
-                n += 3*n +1;
+                n = 3*n +1;
             else if (n % 2 == 0)
-                n += n/2;
+                n = n/2;
             length ++;
         }
-        return length;
+        return length + 1;
     }
 
 
@@ -37,10 +37,15 @@ public class Hailstone {
      * Precondition: n > 0
      */
     public static double propLong(int n) {
-        double i = 0;
-            if (isLongSeq(n) == true)
-                i++;
-        return i;
+        int l = 0;
+        double percent = 0.0;
+        for (int i = 1; i <= n; i++) {
+            if (isLongSeq(i)) {
+                l++;
+            }
+            percent = (double)l/n;
+        }
+        return percent;
     }
 
     // There may be instance variables, constructors, and methods not shown.
