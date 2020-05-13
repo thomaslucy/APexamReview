@@ -12,7 +12,12 @@ public class StudentRecord {
      * Method is marked public for testing purposes.
      */
     public double average(int first, int last) {
-
+        double average = 0.0;
+        for (int i = first; i <= last; i++){
+            average += scores[i];
+        }
+        average = average / (last-first+1);
+        return average;
     }
 
     /** Returns true if each successive value in scores is greater
@@ -21,14 +26,16 @@ public class StudentRecord {
      * Method marked public for testing purposes.
      */
     public boolean hasImproved() {
-        boolean improved = false;
-        for (int i = 0; i < scores.length; i++) {
-            if (scores[i] <= scores[i + 1])
-                improved = true;
-            else
-                improved = false;
+        int improved = scores[0];
+        for (int i = 1; i < scores.length; i++){
+            if (scores[i] >= improved){
+                improved = scores[i];
+            }
+            else {
+                return false;
+            }
         }
-        return improved;
+        return true;
     }
 
     /** If the values in scores have improved, returns the average of the elements in scores
@@ -36,7 +43,15 @@ public class StudentRecord {
      * otherwise, returns the average of all the values in scores
      */
     public double finalAverage() {
-        /* to be implemented in part (c) */
-
+        double a = 0;
+        if (hasImproved()){
+            int score = scores.length;
+            int n = scores.length/2;
+            a = average(n, scores.length-1);
+        }
+        else {
+            a = average(0, scores.length-1);
+        }
+        return a;
     }
-}
+    }
